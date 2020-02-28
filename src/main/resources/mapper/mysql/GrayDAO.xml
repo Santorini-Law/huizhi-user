@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhihui.user.dao.GrayDAO">
+
+    <resultMap id="grayFeature" type="com.zhihui.user.domain.GrayFeatureDO">
+        <result property="id" column="id"/>
+        <result property="grayId" column="gray_id"/>
+        <result property="grayName" column="gray_name"/>
+        <result property="graySwitch" column="gray_switch"/>
+        <result property="whiteList" column="white_list"/>
+        <result property="blackList" column="black_list"/>
+        <result property="grayInterval" column="gray_interval"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+
+    <select id="getGrayFeatureByGrayId" resultMap="grayFeature">
+        select id,
+               gray_id,
+               gray_name,
+               gray_switch,
+               white_list,
+               black_list,
+               gray_interval,
+               create_time
+        from gray_feature
+        where gray_id = #{grayId}
+    </select>
+</mapper>

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: huiiiiiii
+  cloud:
+    config:
+      label: master
+      profile: prd
+      name: database,redis
+      uri: http://106.54.200.51:38888/
+server:
+  port: 9999
