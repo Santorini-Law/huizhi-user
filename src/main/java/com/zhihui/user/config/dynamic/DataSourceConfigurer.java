@@ -66,7 +66,7 @@ public class DataSourceConfigurer {
         shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("uid", DatabaseShardingAlgorithm.class.getName()));
         shardingRuleConfig.setDefaultTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("uid", TableShardingAlgorithm.class.getName()));
         // 分库设置
-        Map<String, DataSource> dataSourceMap = new HashMap<>(2);
+        Map<String, DataSource> dataSourceMap = new HashMap<>(8);
         // 添加多个数据库
         dataSourceMap.put(userDatabase0Config.getDatabaseName(), userDatabase0Config.createDataSource());
         dataSourceMap.put(userDatabase1Config.getDatabaseName(), userDatabase1Config.createDataSource());
@@ -87,7 +87,7 @@ public class DataSourceConfigurer {
     TableRuleConfiguration getUserTableRuleConfiguration() {
         TableRuleConfiguration orderTableRuleConfig = new TableRuleConfiguration();
         orderTableRuleConfig.setLogicTable("user_base");
-        orderTableRuleConfig.setActualDataNodes("user_${0..7}.user_base_${0..1}");
+        orderTableRuleConfig.setActualDataNodes("user_${0..7}.user_base_${0..7}");
         orderTableRuleConfig.setKeyGeneratorColumnName("uid");
         return orderTableRuleConfig;
     }

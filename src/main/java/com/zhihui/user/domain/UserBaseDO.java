@@ -45,7 +45,7 @@ public class UserBaseDO {
     /**
      * 用户生日
      */
-    LocalDateTime birthday;
+    LocalDate birthday;
 
     /**
      * 手机号码(唯一)
