@@ -61,9 +61,10 @@
         )
     </insert>
 
-    <select id="findAll" resultMap="GoodsMap">
-        select  uid
+    <select id="getUserBaseByUid" resultMap="GoodsMap">
+        select uid, user_name, mobile, real_name, id_card
         from user_base
+        where uid = #{uid}
     </select>
 
 </mapper>

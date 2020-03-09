@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "interest")
-public class test {
+public class MonitorController {
 
     @ResponseBody
     @GetMapping("/public/user")
     public String hello() {
-        return "hello";
+        return "Server is OJBK";
     }
 }

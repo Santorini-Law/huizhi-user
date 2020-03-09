@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping(value = "/user/v1")
-public class Article {
+public class UserController {
 
     @Value("${content}")
     private String content;
@@ -54,23 +54,6 @@ public class Article {
     @ResponseBody
     @GetMapping("/hello")
     public String hello() {
-//
-//
-//        GrayExecuteRequestVO grayExecuteRequestVO = new GrayExecuteRequestVO();
-//        grayExecuteRequestVO.setObject(userService);
-//        grayExecuteRequestVO.setOldLogicMethod("getUserNameById");
-//        long uid = 1L;
-//        grayExecuteRequestVO.setOldParams(new Object[]{uid});
-//        grayExecuteRequestVO.setNewLogicMethod("getUserNameByBB");
-//        grayExecuteRequestVO.setNewParams(new Object[]{1, "aa"});
-//        grayExecuteRequestVO.setGrayId(200L);
-//        grayExecuteRequestVO.setUid(202012199L);
-//
-//        GrayExecuteResponseVO grayExecuteResponseVO = grayService.executeGrayLogic(grayExecuteRequestVO);
-//
-//        Boolean grayResult = grayExecuteResponseVO.getGrayResult();
-//
-//        String result = (String) grayExecuteResponseVO.getResult();
 
         System.out.println(masterUrl);
 

@@ -25,7 +25,7 @@ class ProductDaoTest {
     @Test
     void testUserDao() {
         System.out.println(DynamicDataSourceContextHolder.getDataSourceKey());
-        List<UserBaseDO> all = userBaseDAO.findAll();
+        List<UserBaseDO> all = userBaseDAO.getUserBaseByUid(338521345430L);
         for (UserBaseDO userBaseDO : all) {
             System.out.println(userBaseDO);
         }

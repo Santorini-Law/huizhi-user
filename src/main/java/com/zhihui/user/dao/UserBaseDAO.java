@@ -25,7 +25,7 @@ public interface UserBaseDAO {
      *
      * @return 用户信息
      */
-    List<UserBaseDO> findAll();
+    List<UserBaseDO> getUserBaseByUid(Long uid);
 
 
 
