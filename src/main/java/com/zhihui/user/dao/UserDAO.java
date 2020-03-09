@@ -1,15 +1,18 @@
 package com.zhihui.user.dao;
 
+import com.zhihui.user.domain.UserDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
- * user dao
+ * UserDO mapper for operate data of products table
  *
  * @author LDZ
- * @date 2019-09-10 12:23
+ * @date 2020-03-09 23:10
  */
 @Mapper
 public interface UserDAO {
-
-    String getUserNameById(long id);
+    UserDO select(@Param("uid") long uid);
 }

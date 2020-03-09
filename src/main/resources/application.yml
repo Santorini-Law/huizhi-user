@@ -1,4 +1,118 @@
-mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-  mapper-locations: classpath*:/mapper/mysql/*.xml
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      # zebra datasource config
+      master:
+        name: zebra
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost/zebra?useSSL=false
+        port: 3306
+        username: root
+        password: 112233
+  aop:
+    proxy-target-class: true
+
+## 数据库0配置
+user0:
+  ## 数据库database0地址
+  url: jdbc:mysql://localhost:3306/user_0?characterEncoding=utf8&useSSL=false
+  ## 数据库database0用户名
+  username: root
+  ## 数据库database0密码
+  password: 112233
+  ## 数据库database0驱动
+  driverClassName: com.mysql.jdbc.Driver
+  ## 数据库database0名称
+  databaseName: user_0
+
+## 数据库1配置
+user1:
+  ## 数据库database1地址
+  url: jdbc:mysql://localhost:3306/user_1?characterEncoding=utf8&useSSL=false
+  ## 数据库database1用户名
+  username: root
+  ## 数据库database1密码
+  password: 112233
+  ## 数据库database1驱动
+  driverClassName: com.mysql.jdbc.Driver
+  ## 数据库database1名称
+  databaseName: user_1
+## 数据库2配置
+user2:
+  ## 数据库database2地址
+  url: jdbc:mysql://localhost:3306/user_2?characterEncoding=utf8&useSSL=false
+  ## 数据库database2用户名
+  username: root
+  ## 数据库database2密码
+  password: 112233
+  ## 数据库database2驱动
+  driverClassName: com.mysql.jdbc.Driver
+  ## 数据库database2名称
+  databaseName: user_2
+
+##数据库配置
+user3:
+  ## 数据库database3地址
+  url: jdbc:mysql://localhost:3306/user_3?characterEncoding=utf8&useSSL=false
+  ## 数据库database3用户名
+  username: root
+  ##数据库database3密码
+  password: 112233
+  ##数据库database3驱动
+  driverClassName: com.mysql.jdbc.Driver
+  ##数据库databas3名称
+  databaseName: user_3
+
+## 数据库4配置
+user4:
+  ## 数据库database4地址
+  url: jdbc:mysql://localhost:3306/user_4?characterEncoding=utf8&useSSL=false
+  ## 数据库database4用户名
+  username: root
+  ## 数据库database4密码
+  password: 112233
+  ## 数据库database4驱动
+  driverClassName: com.mysql.jdbc.Driver
+  ## 数据库database4名称
+  databaseName: user_4
+
+## 数据库5配置
+user5:
+  ## 数据库database5地址
+  url: jdbc:mysql://localhost:3306/user_5?characterEncoding=utf8&useSSL=false
+  ## 数据库database5用户名
+  username: root
+  ## 数据库database5密码
+  password: 112233
+  ##数据库database5驱动
+  driverClassName: com.mysql.jdbc.Driver
+  ##数据库database5名称
+  databaseName: user_5
+
+## 数据库6配置
+user6:
+  ## 数据库database6地址
+  url: jdbc:mysql://localhost:3306/user_6?characterEncoding=utf8&useSSL=false
+  ## 数据库database6用户名
+  username: root
+  ##数据库database6密码
+  password: 112233
+  ##数据库database6驱动
+  driverClassName: com.mysql.jdbc.Driver
+  ##数据库database6名称
+  databaseName: user_6
+
+## 数据库7配置
+user7:
+  ##数据库database7地址
+  url: jdbc:mysql://localhost:3306/user_7?characterEncoding=utf8&useSSL=false
+  ## 数据库database7用户名
+  username: root
+  ## 数据库database7密码
+  password: 112233
+  ## 数据库database7驱动
+  driverClassName: com.mysql.jdbc.Driver
+  ## 数据库database7名称
+  databaseName: user_7

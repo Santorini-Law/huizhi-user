@@ -1,6 +1,5 @@
 package com.zhihui.user.service;
 
-import com.zhihui.user.dao.UserDAO;
 import com.zhihui.user.service.api.CacheService;
 import com.zhihui.user.service.api.IUserService;
 import org.springframework.stereotype.Service;
@@ -13,9 +12,6 @@ import javax.annotation.Resource;
  */
 @Service
 public class UserServiceImpl implements IUserService {
-
-    @Resource
-    UserDAO userDAO;
 
     @Resource
     CacheService cacheService;

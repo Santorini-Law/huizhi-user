@@ -29,8 +29,11 @@ public class Article {
     @Value("${content}")
     private String content;
 
-    @Value("${spring.datasource.other.jdbc-url}")
+    @Value("${spring.datasource.other.url}")
     private String url;
+
+    @Value("${spring.datasource.hikari.master.url}")
+    private String masterUrl;
 
     @Bean
     private Map<String, Integer> integer1() {
@@ -51,24 +54,26 @@ public class Article {
     @ResponseBody
     @GetMapping("/hello")
     public String hello() {
+//
+//
+//        GrayExecuteRequestVO grayExecuteRequestVO = new GrayExecuteRequestVO();
+//        grayExecuteRequestVO.setObject(userService);
+//        grayExecuteRequestVO.setOldLogicMethod("getUserNameById");
+//        long uid = 1L;
+//        grayExecuteRequestVO.setOldParams(new Object[]{uid});
+//        grayExecuteRequestVO.setNewLogicMethod("getUserNameByBB");
+//        grayExecuteRequestVO.setNewParams(new Object[]{1, "aa"});
+//        grayExecuteRequestVO.setGrayId(200L);
+//        grayExecuteRequestVO.setUid(202012199L);
+//
+//        GrayExecuteResponseVO grayExecuteResponseVO = grayService.executeGrayLogic(grayExecuteRequestVO);
+//
+//        Boolean grayResult = grayExecuteResponseVO.getGrayResult();
+//
+//        String result = (String) grayExecuteResponseVO.getResult();
 
+        System.out.println(masterUrl);
 
-        GrayExecuteRequestVO grayExecuteRequestVO = new GrayExecuteRequestVO();
-        grayExecuteRequestVO.setObject(userService);
-        grayExecuteRequestVO.setOldLogicMethod("getUserNameById");
-        long uid = 1L;
-        grayExecuteRequestVO.setOldParams(new Object[]{uid});
-        grayExecuteRequestVO.setNewLogicMethod("getUserNameByBB");
-        grayExecuteRequestVO.setNewParams(new Object[]{1, "aa"});
-        grayExecuteRequestVO.setGrayId(200L);
-        grayExecuteRequestVO.setUid(202012199L);
-
-        GrayExecuteResponseVO grayExecuteResponseVO = grayService.executeGrayLogic(grayExecuteRequestVO);
-
-        Boolean grayResult = grayExecuteResponseVO.getGrayResult();
-
-        String result = (String) grayExecuteResponseVO.getResult();
-
-        return "gray result = " + grayResult + "result = " + result;
+        return masterUrl;
     }
 }
