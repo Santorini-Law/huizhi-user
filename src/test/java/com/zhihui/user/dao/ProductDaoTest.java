@@ -4,6 +4,7 @@ import com.zhihui.user.config.dynamic.DynamicDataSourceContextHolder;
 import com.zhihui.user.domain.GrayFeatureDO;
 import com.zhihui.user.domain.UserBaseDO;
 import com.zhihui.user.domain.UserDO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @SpringBootTest
+@Slf4j
 class ProductDaoTest {
 
     @Resource
@@ -27,17 +29,15 @@ class ProductDaoTest {
 
     @Test
     void testUserDao() {
-        System.out.println(DynamicDataSourceContextHolder.getDataSourceKey());
-        List<UserBaseDO> all = userBaseDAO.getUserBaseByUid(338521345430L);
-        for (UserBaseDO userBaseDO : all) {
-            System.out.println(userBaseDO);
-        }
+        log.info("current datasource key is {}", DynamicDataSourceContextHolder.getDataSourceKey());
+        UserBaseDO userBaseDO = userBaseDAO.getUserBaseByUid(63L);
+        log.info("user base info is {}", userBaseDO);
         DynamicDataSourceContextHolder.useZhihuiDataSource();
         GrayFeatureDO grayFeatureByGrayId = grayDAO.getGrayFeatureByGrayId(200L);
-        System.out.println(grayFeatureByGrayId);
+        log.info("gray feature is {}", grayFeatureByGrayId);
         DynamicDataSourceContextHolder.useZebraDataSource();
         UserDO userDO = userDAO.select(39L);
-        System.out.println(userDO.getMobile());
+        log.info("user info is {}", userDO);
     }
 
     @Test

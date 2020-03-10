@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhihui.user.dao.UserBaseDAO">
 
-    <resultMap id="GoodsMap" type="com.zhihui.user.domain.UserBaseDO">
+    <resultMap id="UserBaseMap" type="com.zhihui.user.domain.UserBaseDO">
         <id column="uid" property="uid"/>
         <result column="user_role" property="userRole"/>
         <result column="register_source" property="registerSource"/>
@@ -61,8 +61,8 @@
         )
     </insert>
 
-    <select id="getUserBaseByUid" resultMap="GoodsMap">
-        select uid, user_name, mobile, real_name, id_card
+    <select id="getUserBaseByUid" resultMap="UserBaseMap">
+        select uid, user_name, mobile, real_name, id_card, create_time
         from user_base
         where uid = #{uid}
     </select>

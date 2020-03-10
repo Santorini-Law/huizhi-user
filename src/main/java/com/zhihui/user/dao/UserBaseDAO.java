@@ -3,8 +3,6 @@ package com.zhihui.user.dao;
 import com.zhihui.user.domain.UserBaseDO;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
-
 /**
  * @author LDZ
  * @date 2020-03-07 21:02
@@ -21,12 +19,11 @@ public interface UserBaseDAO {
     int insert(UserBaseDO userBaseDO);
 
     /**
-     * 获取所有
+     * 根据uid获取用户信息
      *
      * @return 用户信息
      */
-    List<UserBaseDO> getUserBaseByUid(Long uid);
-
+    UserBaseDO getUserBaseByUid(Long uid);
 
 
 }

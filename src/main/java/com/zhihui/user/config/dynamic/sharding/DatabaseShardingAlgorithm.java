@@ -23,7 +23,6 @@ public class DatabaseShardingAlgorithm implements PreciseShardingAlgorithm<Long>
         for (String database : databases) {
             if (database.endsWith((Long.parseLong(preciseShardingValue.getValue().toString()) / 8) % 8 + "")) {
                 log.info("The Value {} is in the database {}", preciseShardingValue.getValue(), database);
-                System.out.println("value" + preciseShardingValue.getValue() + " is in database" + database);
                 return database;
             }
         }

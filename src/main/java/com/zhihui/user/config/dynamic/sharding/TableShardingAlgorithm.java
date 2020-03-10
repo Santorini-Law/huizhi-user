@@ -20,7 +20,7 @@ public class TableShardingAlgorithm implements PreciseShardingAlgorithm<Long> {
     public String doSharding(Collection<String> tables, PreciseShardingValue<Long> preciseShardingValue) {
         for (String table : tables) {
             if (table.endsWith(Long.parseLong(preciseShardingValue.getValue().toString()) % 8 + "")) {
-                log.info("The Value {} is in the database {}", preciseShardingValue.getValue(), table);
+                log.info("The Value {} is in the table {}", preciseShardingValue.getValue(), table);
                 return table;
             }
         }
