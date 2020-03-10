@@ -1,5 +1,8 @@
 package com.zhihui.user.service;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.huizhi.rpc.RpcIdGenerationService;
+import com.huizhi.rpc.model.IdGenerationResponseDTO;
 import com.zhihui.user.service.api.GrayService;
 import com.zhihui.user.vo.GrayCheckRequestVO;
 import lombok.AllArgsConstructor;
@@ -21,6 +24,15 @@ class GrayServiceImplTest {
 
     @Resource
     GrayService grayService;
+
+    @Reference
+    RpcIdGenerationService rpcIdGenerationService;
+
+    @Test
+    public void rpcTest() {
+        IdGenerationResponseDTO idGenerationResponseDTO = rpcIdGenerationService.generateUid(null);
+        System.out.println(idGenerationResponseDTO.getId());
+    }
 
 
     @Test

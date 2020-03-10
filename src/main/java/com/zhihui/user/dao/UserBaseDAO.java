@@ -21,6 +21,7 @@ public interface UserBaseDAO {
     /**
      * 根据uid获取用户信息
      *
+     * @param uid uid
      * @return 用户信息
      */
     UserBaseDO getUserBaseByUid(Long uid);

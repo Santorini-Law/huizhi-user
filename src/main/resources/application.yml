@@ -116,3 +116,11 @@ user7:
   driverClassName: com.mysql.jdbc.Driver
   ## 数据库database7名称
   databaseName: user_7
+
+dubbo:
+  application:
+    name: user-service
+  registry:
+    address: zookeeper://118.25.47.17:2181
+  monitor:
+    protocol: registry
