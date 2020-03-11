@@ -1,5 +1,7 @@
 package com.zhihui.user.domain;
 
+import com.zhihui.user.domain.enums.GenderEnum;
+import com.zhihui.user.domain.enums.RegisterSourceEnum;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -23,9 +25,9 @@ public class UserBaseDO {
     Integer userRole;
 
     /**
-     * 注册来源：1手机号 2邮箱 3用户名 4qq 5微信 6腾讯微博 7新浪微博
+     * 注册来源：1手机号 2邮箱 3用户名 4 qq 5微信 6腾讯微博 7新浪微博
      */
-    Integer registerSource;
+    RegisterSourceEnum registerSource;
 
     /**
      * 用户账号，必须唯一
@@ -40,7 +42,7 @@ public class UserBaseDO {
     /**
      * 用户性别 0-female 1-male
      */
-    Integer gender;
+    GenderEnum gender;
 
     /**
      * 用户生日
@@ -90,6 +92,6 @@ public class UserBaseDO {
     /**
      * 基础信息额外信息
      */
-    String baseExtra;
+    UserBaseExtraDO baseExtra;
 
 }

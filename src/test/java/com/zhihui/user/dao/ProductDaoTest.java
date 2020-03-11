@@ -4,6 +4,8 @@ import com.zhihui.user.config.dynamic.DynamicDataSourceContextHolder;
 import com.zhihui.user.domain.GrayFeatureDO;
 import com.zhihui.user.domain.UserBaseDO;
 import com.zhihui.user.domain.UserDO;
+import com.zhihui.user.domain.enums.GenderEnum;
+import com.zhihui.user.domain.enums.RegisterSourceEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -28,7 +30,7 @@ class ProductDaoTest {
     @Test
     void testUserDao() {
         log.info("current datasource key is {}", DynamicDataSourceContextHolder.getDataSourceKey());
-        UserBaseDO userBaseDO = userBaseDAO.getUserBaseByUid(63L);
+        UserBaseDO userBaseDO = userBaseDAO.getUserBaseByUid(127L);
         log.info("user base info is {}", userBaseDO);
         DynamicDataSourceContextHolder.useZhihuiDataSource();
         GrayFeatureDO grayFeatureByGrayId = grayDAO.getGrayFeatureByGrayId(200L);
@@ -42,8 +44,8 @@ class ProductDaoTest {
     public void testInsertUserBase() {
         UserBaseDO userBaseDO = new UserBaseDO();
         userBaseDO.setUserRole(1);
-        userBaseDO.setRegisterSource(1);
-        userBaseDO.setGender(1);
+        userBaseDO.setRegisterSource(RegisterSourceEnum.MOBILE);
+        userBaseDO.setGender(GenderEnum.FEMALE);
         userBaseDO.setBirthday(LocalDate.now());
         userBaseDO.setMobile("13123123123");
         userBaseDO.setMobileBindTime(LocalDateTime.now());
@@ -53,13 +55,11 @@ class ProductDaoTest {
         userBaseDO.setUpdateTime(LocalDateTime.now());
         userBaseDO.setRealName("");
         userBaseDO.setIdCard("");
-        userBaseDO.setBaseExtra("");
-        for (long i = 64; i < 129; i++) {
-            userBaseDO.setUid(i);
-            userBaseDO.setUserName("userName" + i);
-            userBaseDO.setNickName("nickName" + i);
+        userBaseDO.setBaseExtra(null);
+        userBaseDO.setUid(10086L);
+        userBaseDO.setUserName("userName" + 10086);
+        userBaseDO.setNickName("nickName" + 10086);
 
-        }
         userBaseDAO.insert(userBaseDO);
     }
 }

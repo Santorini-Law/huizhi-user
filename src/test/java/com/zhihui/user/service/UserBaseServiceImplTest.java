@@ -2,6 +2,8 @@ package com.zhihui.user.service;
 
 import com.zhihui.user.dao.UserBaseDAO;
 import com.zhihui.user.domain.UserBaseDO;
+import com.zhihui.user.domain.enums.GenderEnum;
+import com.zhihui.user.domain.enums.RegisterSourceEnum;
 import com.zhihui.user.service.api.IUserBaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -27,8 +29,8 @@ class UserBaseServiceImplTest {
         for (long i = 64; i < 129; i++) {
             UserBaseDO userBaseDO = new UserBaseDO();
             userBaseDO.setUserRole(1);
-            userBaseDO.setRegisterSource(1);
-            userBaseDO.setGender(1);
+            userBaseDO.setRegisterSource(RegisterSourceEnum.MOBILE);
+            userBaseDO.setGender(GenderEnum.FEMALE);
             userBaseDO.setBirthday(LocalDate.now());
             userBaseDO.setMobile("13123123123");
             userBaseDO.setMobileBindTime(LocalDateTime.now());
@@ -38,7 +40,7 @@ class UserBaseServiceImplTest {
             userBaseDO.setUpdateTime(LocalDateTime.now());
             userBaseDO.setRealName("");
             userBaseDO.setIdCard("");
-            userBaseDO.setBaseExtra("");
+            userBaseDO.setBaseExtra(null);
             userBaseDO.setUid(i);
             userBaseDO.setUserName("userName" + i);
             userBaseDO.setNickName("nickName" + i);

@@ -5,59 +5,74 @@
     <resultMap id="UserBaseMap" type="com.zhihui.user.domain.UserBaseDO">
         <id column="uid" property="uid"/>
         <result column="user_role" property="userRole"/>
-        <result column="register_source" property="registerSource"/>
+        <result column="register_source" property="registerSource" typeHandler="com.zhihui.user.domain.handler.RegisterSourceHandler"/>
         <result column="user_name" property="userName"/>
         <result column="nick_name" property="nickName"/>
-        <result column="gender" property="gender"/>
+        <result column="gender" property="gender" typeHandler="com.zhihui.user.domain.handler.GenderHandler"/>
+        <result column="birthday" property="birthday"/>
         <result column="mobile" property="mobile"/>
         <result column="mobile_bind_time" property="mobileBindTime"/>
         <result column="email" property="email"/>
+        <result column="email_bind_time" property="emailBindTime"/>
         <result column="create_time" property="createTime"/>
         <result column="update_time" property="updateTime"/>
         <result column="real_name" property="realName"/>
         <result column="id_card" property="idCard"/>
-        <result column="base_extra" property="baseExtra"/>
+        <result column="base_extra" property="baseExtra" typeHandler="com.zhihui.user.handler.BaseJsonTypeHandler"/>
     </resultMap>
 
     <insert id="insert" parameterType="com.zhihui.user.domain.UserBaseDO">
-        insert into user_base (
-        uid,
-        user_role,
-        register_source,
-        user_name,
-        nick_name,
-        gender,
-        birthday,
-        mobile,
-        mobile_bind_time,
-        email,
-        create_time,
-        update_time,
-        real_name,
-        id_card,
-        base_extra
-        )
-        values (
-        #{uid},
-        #{userRole},
-        #{registerSource},
-        #{userName},
-        #{nickName},
-        #{gender},
-        #{birthday},
-        #{mobile},
-        #{mobileBindTime},
-        #{email},
-        #{createTime},
-        #{updateTime},
-        #{realName},
-        #{idCard},
-        #{baseExtra}
-        )
+        insert into user_base (uid,
+                               user_role,
+                               register_source,
+                               user_name,
+                               nick_name,
+                               gender,
+                               birthday,
+                               mobile,
+                               mobile_bind_time,
+                               email,
+                               email_bind_time,
+                               create_time,
+                               update_time,
+                               real_name,
+                               id_card,
+                               base_extra)
+        values (#{uid},
+                #{userRole},
+                #{registerSource, typeHandler=com.zhihui.user.domain.handler.RegisterSourceHandler},
+                #{userName},
+                #{nickName},
+                #{gender, typeHandler=com.zhihui.user.domain.handler.GenderHandler},
+                #{birthday},
+                #{mobile},
+                #{mobileBindTime},
+                #{email},
+                #{emailBindTime},
+                #{createTime},
+                #{updateTime},
+                #{realName},
+                #{idCard},
+                #{baseExtra, typeHandler=com.zhihui.user.handler.BaseJsonTypeHandler})
     </insert>
 
     <select id="getUserBaseByUid" resultMap="UserBaseMap">
-        select uid, user_name, mobile, real_name, id_card, create_time
+        select uid,
+               user_role,
+               register_source,
+               user_name,
+               nick_name,
+               gender,
+               birthday,
+               mobile,
+               mobile_bind_time,
+               email,
+               email_bind_time,
+               create_time,
+               update_time,
+               real_name,
+               id_card,
+               base_extra
         from user_base
         where uid = #{uid}
     </select>
