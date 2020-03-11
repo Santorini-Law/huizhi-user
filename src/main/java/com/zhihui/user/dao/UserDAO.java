@@ -14,5 +14,21 @@ import java.util.List;
  */
 @Mapper
 public interface UserDAO {
-    UserDO select(@Param("uid") long uid);
+
+    /**
+     * 根据uid获取用户信息
+     *
+     * @param uid uid
+     * @return 用户信息
+     */
+    UserDO getUserByUid(@Param("uid") long uid);
+
+
+    /**
+     * 每次拿1000个用户信息
+     *
+     * @param offset 偏移量
+     * @return 1000个用户信息
+     */
+    List<UserDO> getUserListByOffset(Integer offset);
 }

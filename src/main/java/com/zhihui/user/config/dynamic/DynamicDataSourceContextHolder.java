@@ -44,6 +44,9 @@ public class DynamicDataSourceContextHolder {
         CONTEXT_HOLDER.set(key);
     }
 
+    public static void useShardingDataSource() {
+        CONTEXT_HOLDER.set(DataSourceKey.sharding.name());
+    }
 
     public static void useZhihuiDataSource() {
         CONTEXT_HOLDER.set(DataSourceKey.zhihui.name());
@@ -51,21 +54,6 @@ public class DynamicDataSourceContextHolder {
 
     public static void useZebraDataSource() {
         CONTEXT_HOLDER.set(DataSourceKey.zebra.name());
-    }
-
-    /**
-     * Use slave data source.
-     */
-    public static void useSlaveDataSource() {
-        try {
-            int datasourceKeyIndex = counter % slaveDataSourceKeys.size();
-            CONTEXT_HOLDER.set(String.valueOf(slaveDataSourceKeys.get(datasourceKeyIndex)));
-            counter++;
-        } catch (Exception e) {
-            useZhihuiDataSource();
-            logger.error("Switch slave datasource failed, error message is {}", e.getMessage());
-            e.printStackTrace();
-        }
     }
 
     /**

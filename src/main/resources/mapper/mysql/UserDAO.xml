@@ -7,11 +7,17 @@
         <result column="mobile" property="mobile"></result>
     </resultMap>
 
-    <select id="select" resultType="com.zhihui.user.domain.UserDO">
+    <select id="getUserByUid" resultType="com.zhihui.user.domain.UserDO">
         SELECT *
         FROM user
         WHERE uid = #{uid}
         LIMIT 1
     </select>
 
+    <select id="getUserListByOffset" resultType="com.zhihui.user.domain.UserDO">
+        select *
+        from user
+        limit 1000
+            offset #{offset}
+    </select>
 </mapper>

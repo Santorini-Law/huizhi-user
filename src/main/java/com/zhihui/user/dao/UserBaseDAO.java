@@ -2,6 +2,9 @@ package com.zhihui.user.dao;
 
 import com.zhihui.user.domain.UserBaseDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @author LDZ

@@ -26,7 +26,7 @@ class GrayServiceImplTest {
     GrayService grayService;
 
     @Reference
-    RpcIdGenerationService rpcIdGenerationService;
+    private RpcIdGenerationService rpcIdGenerationService;
 
     @Test
     public void rpcTest() {
