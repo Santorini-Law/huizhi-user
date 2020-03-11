@@ -27,7 +27,12 @@ public enum GenderEnum {
     /**
      * 男性
      */
-    MALE(1);
+    MALE(1),
+
+    /**
+     * 未知
+     */
+    UNKNOWN(2);
 
     /**
      * code

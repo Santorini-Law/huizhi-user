@@ -26,4 +26,7 @@ public interface IUserBaseService {
     UserBaseDO getUserBaseInfoByMobile(String mobile);
 
     UserBaseDO getUserBaseInfoByUid(Long uid);
+
+
+    List<UserBaseDO> getUserBaseInfoByEmail(String email);
 }

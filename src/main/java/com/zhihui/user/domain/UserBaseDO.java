@@ -95,4 +95,25 @@ public class UserBaseDO {
      */
     UserBaseExtraDO baseExtra;
 
+    @Override
+    public String toString() {
+        return "UserBaseDO{" +
+                "uid=" + uid +
+                ", userRole=" + userRole +
+                ", registerSource=" + registerSource +
+                ", userName='" + userName + '\'' +
+                ", nickName='" + nickName + '\'' +
+                ", gender=" + gender +
+                ", birthday=" + birthday +
+                ", mobile='" + mobile + '\'' +
+                ", mobileBindTime=" + mobileBindTime +
+                ", email='" + email + '\'' +
+                ", emailBindTime=" + emailBindTime +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
+                ", realName='" + realName + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", baseExtra=" + baseExtra +
+                '}';
+    }
 }

@@ -99,4 +99,26 @@
         where mobile = #{mobile}
     </select>
 
+    <select id="getUserBaseByEmail" resultMap="UserBaseMap">
+        select uid,
+               user_role,
+               register_source,
+               user_name,
+               nick_name,
+               gender,
+#                birthday,
+               mobile,
+#                mobile_bind_time,
+               email,
+#                email_bind_time,
+#                create_time,
+#                update_time,
+               real_name,
+               id_card,
+               base_extra
+        from user_base
+        where email = #{email}
+    </select>
+
+
 </mapper>

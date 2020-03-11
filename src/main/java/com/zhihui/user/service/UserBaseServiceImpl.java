@@ -33,16 +33,15 @@ public class UserBaseServiceImpl implements IUserBaseService {
     public void batchInsertUserBaseInfo(List<UserBaseDO> userBaseList) {
         log.info("batch insert {} user base info... ", userBaseList.size());
         DynamicDataSourceContextHolder.useShardingDataSource();
-        CountDownLatch countDownLatch = new CountDownLatch(userBaseList.size());
         try {
             for (UserBaseDO userBaseDO : userBaseList) {
-                CompletableFuture.runAsync(() -> userBaseDAO.insert(userBaseDO), threadPoolTaskExecutor).whenComplete((r, e) -> countDownLatch.countDown());
+                log.info("?? {}", userBaseDO);
+                int a = userBaseDAO.insert(userBaseDO);
+                log.info("*** {}", userBaseDO);
+                log.info("insert {} 条", a);
+
             }
-            try {
-                countDownLatch.await();
-            } catch (InterruptedException e) {
-                // ignore
-            }
+
         } catch (Exception e) {
             log.error("insert error", e);
         }
@@ -65,5 +64,11 @@ public class UserBaseServiceImpl implements IUserBaseService {
     public UserBaseDO getUserBaseInfoByUid(Long uid) {
         DynamicDataSourceContextHolder.useShardingDataSource();
         return userBaseDAO.getUserBaseByUid(uid);
+    }
+
+    @Override
+    public List<UserBaseDO> getUserBaseInfoByEmail(String email) {
+        DynamicDataSourceContextHolder.useShardingDataSource();
+        return userBaseDAO.getUserBaseByEmail(email);
     }
 }

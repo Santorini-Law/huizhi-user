@@ -14,13 +14,14 @@ import com.zhihui.user.domain.enums.RegisterSourceEnum;
 import com.zhihui.user.domain.enums.UserRoleEnum;
 import com.zhihui.user.service.api.IUserBaseService;
 import com.zhihui.user.service.api.IUserService;
+import jdk.nashorn.internal.runtime.options.Option;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
-import javax.swing.text.html.Option;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -50,29 +51,37 @@ class UserBaseServiceImplTest {
     }
 
     @Test
+    void testGetUserBaseInfoByEmail() {
+        List<UserBaseDO> userBaseInfoByMobile = userBaseService.getUserBaseInfoByEmail("a@a.com");
+
+        for (UserBaseDO userBaseDO: userBaseInfoByMobile){
+            log.info("uid = {}", userBaseDO);
+        }
+    }
+    @Test
     void testInsertUserBaseInfo() {
         UserBaseDO userBaseDO = new UserBaseDO();
         IdGenerationRequestDTO re = new IdGenerationRequestDTO();
-        re.setMobile("18629670402");
+        re.setMobile("18342206526");
         IdGenerationResponseDTO idGenerationResponseDTO = rpcIdGenerationService.generateUid(re);
         userBaseDO.setUid(idGenerationResponseDTO.getId());
         userBaseDO.setUserRole(UserRoleEnum.INNER);
         userBaseDO.setRegisterSource(RegisterSourceEnum.INIT);
-        userBaseDO.setUserName("father");
-        userBaseDO.setNickName("yinglishzhi");
-        userBaseDO.setGender(GenderEnum.MALE);
-        userBaseDO.setBirthday(LocalDate.of(1992, 04, 02));
-        userBaseDO.setMobile("18629670402");
+        userBaseDO.setUserName("mother");
+        userBaseDO.setNickName("huihui");
+        userBaseDO.setGender(GenderEnum.FEMALE);
+        userBaseDO.setBirthday(LocalDate.of(1992, 07, 03));
+        userBaseDO.setMobile("18342206526");
         userBaseDO.setMobileBindTime(LocalDateTime.now());
-        userBaseDO.setEmail("yinglishzhi@gmail.com");
+        userBaseDO.setEmail("belivar@gmail.com");
         userBaseDO.setEmailBindTime(LocalDateTime.now());
         userBaseDO.setCreateTime(LocalDateTime.now());
         userBaseDO.setUpdateTime(LocalDateTime.now());
-        userBaseDO.setRealName("劉德志");
-        userBaseDO.setIdCard("232301199204020010");
+        userBaseDO.setRealName("杨惠");
+        userBaseDO.setIdCard("220702199207030825");
         UserBaseExtraDO userBaseExtraDO = new UserBaseExtraDO();
-        userBaseExtraDO.setStature(new BigDecimal(185));
-        userBaseExtraDO.setWeight(new BigDecimal(88));
+        userBaseExtraDO.setStature(new BigDecimal(168));
+        userBaseExtraDO.setWeight(new BigDecimal(50.1));
         userBaseDO.setBaseExtra(userBaseExtraDO);
         userBaseService.insertUserBaseInfo(userBaseDO);
     }
@@ -122,47 +131,51 @@ class UserBaseServiceImplTest {
 
         List<String> mobileList = userService.getMobile();
 
-//        Map<String, Integer> m = mobileList.stream().
-
+        List<UserBaseDO> userBaseDOS = new ArrayList<>();
 
         for (UserDO user : userListByOffset) {
+            log.info("user = {}", user.toString());
 
             Long uid;
             try {
+                if (!CollectionUtils.isEmpty(mobileList) && mobileList.contains(user.getMobile())) {
+                    throw new RuntimeException("手机号重复了");
+                }
                 IdGenerationRequestDTO idGenerationRequestDTO = new IdGenerationRequestDTO();
                 idGenerationRequestDTO.setMobile(user.getMobile());
                 IdGenerationResponseDTO idGenerationResponseDTO = rpcIdGenerationService.generateUid(idGenerationRequestDTO);
                 uid = idGenerationResponseDTO.getId();
+                UserBaseDO userBaseDO = new UserBaseDO();
+                userBaseDO.setUid(uid);
+                userBaseDO.setUserRole(UserRoleEnum.NORMAL);
+                userBaseDO.setRegisterSource(RegisterSourceEnum.INIT);
+                userBaseDO.setUserName("");
+                userBaseDO.setNickName(Optional.ofNullable(user.getNickname()).orElse(""));
+                GenderEnum genderEnum = Optional.ofNullable(user.getSex()).map(a -> a == 11 ? GenderEnum.MALE : a == 2 ? GenderEnum.FEMALE : GenderEnum.UNKNOWN).orElse(GenderEnum.UNKNOWN);
+                userBaseDO.setGender(genderEnum);
+                String birthday = user.getBirthday();
+                LocalDate b = Optional.ofNullable(birthday).map(a -> LocalDate.parse(a, DateTimeFormatter.ofPattern("yyyy-M-d"))).orElse(null);
+                userBaseDO.setBirthday(b);
+                userBaseDO.setMobile(user.getMobile());
+                userBaseDO.setMobileBindTime(user.getAddTime());
+                userBaseDO.setEmail(Optional.ofNullable(user.getEmail()).orElse(""));
+                userBaseDO.setEmailBindTime(user.getAddTime());
+                userBaseDO.setCreateTime(Optional.ofNullable(user.getAddTime()).orElse(LocalDateTime.now()));
+                userBaseDO.setUpdateTime(Optional.ofNullable(user.getAddTime()).orElse(LocalDateTime.now()));
+                userBaseDO.setRealName(Optional.ofNullable(user.getRealName()).orElse(""));
+                userBaseDO.setIdCard(Optional.ofNullable(user.getIdCard()).orElse(""));
+                UserBaseExtraDO userBaseExtraDO = new UserBaseExtraDO();
+                userBaseExtraDO.setStature(Optional.of(user).map(UserDO::getTall).map(BigDecimal::new).orElse(null));
+                userBaseExtraDO.setWeight(Optional.of(user).map(UserDO::getHeavy).map(BigDecimal::new).orElse(null));
+                userBaseDO.setBaseExtra(userBaseExtraDO);
+                mobileList.add(user.getMobile());
+                userBaseDOS.add(userBaseDO);
             } catch (Exception e) {
                 log.error("user = {} 获取id失败", user.toString(), e);
-                continue;
             }
-
-            UserBaseDO userBaseDO = new UserBaseDO();
-            userBaseDO.setUid(uid);
-            userBaseDO.setUserRole(UserRoleEnum.NORMAL);
-            userBaseDO.setRegisterSource(RegisterSourceEnum.INIT);
-            userBaseDO.setUserName("");
-            userBaseDO.setNickName(user.getNickname());
-            GenderEnum genderEnum = user.getSex() == 1 ? GenderEnum.MALE : user.getSex() == 2 ? GenderEnum.FEMALE : null;
-            userBaseDO.setGender(genderEnum);
-            String birthday = user.getBirthday();
-            LocalDate b = LocalDate.parse(birthday, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-            userBaseDO.setBirthday(b);
-            userBaseDO.setMobile(user.getMobile());
-            userBaseDO.setMobileBindTime(user.getAddTime());
-            userBaseDO.setEmail(user.getEmail());
-            userBaseDO.setEmailBindTime(user.getAddTime());
-            userBaseDO.setCreateTime(user.getAddTime());
-            userBaseDO.setUpdateTime(user.getAddTime());
-            userBaseDO.setRealName(user.getRealName());
-            userBaseDO.setIdCard(user.getIdCard());
-            UserBaseExtraDO userBaseExtraDO = new UserBaseExtraDO();
-            userBaseExtraDO.setStature(Optional.of(user.getTall()).map(BigDecimal::new).orElse(null));
-            userBaseExtraDO.setWeight(Optional.of(user.getHeavy()).map(BigDecimal::new).orElse(null));
-            userBaseDO.setBaseExtra(userBaseExtraDO);
-
         }
+
+        userBaseService.batchInsertUserBaseInfo(userBaseDOS);
 
     }
 
