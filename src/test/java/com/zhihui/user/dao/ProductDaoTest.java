@@ -6,6 +6,7 @@ import com.zhihui.user.domain.UserBaseDO;
 import com.zhihui.user.domain.UserDO;
 import com.zhihui.user.domain.enums.GenderEnum;
 import com.zhihui.user.domain.enums.RegisterSourceEnum;
+import com.zhihui.user.domain.enums.UserRoleEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,7 +44,7 @@ class ProductDaoTest {
     @Test
     public void testInsertUserBase() {
         UserBaseDO userBaseDO = new UserBaseDO();
-        userBaseDO.setUserRole(1);
+        userBaseDO.setUserRole(UserRoleEnum.NORMAL);
         userBaseDO.setRegisterSource(RegisterSourceEnum.MOBILE);
         userBaseDO.setGender(GenderEnum.FEMALE);
         userBaseDO.setBirthday(LocalDate.now());

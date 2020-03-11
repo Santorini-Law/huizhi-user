@@ -20,4 +20,9 @@
         limit 1000
             offset #{offset}
     </select>
+
+    <select id="getAllMobile" resultType="java.lang.String">
+        select mobile
+        from mobile_distinct
+    </select>
 </mapper>

@@ -48,4 +48,22 @@ public class UserBaseServiceImpl implements IUserBaseService {
         }
 
     }
+
+    @Override
+    public void insertUserBaseInfo(UserBaseDO userBaseDO) {
+        DynamicDataSourceContextHolder.useShardingDataSource();
+        userBaseDAO.insert(userBaseDO);
+    }
+
+    @Override
+    public UserBaseDO getUserBaseInfoByMobile(String mobile) {
+        DynamicDataSourceContextHolder.useShardingDataSource();
+        return userBaseDAO.getUserBaseByMobile(mobile);
+    }
+
+    @Override
+    public UserBaseDO getUserBaseInfoByUid(Long uid) {
+        DynamicDataSourceContextHolder.useShardingDataSource();
+        return userBaseDAO.getUserBaseByUid(uid);
+    }
 }

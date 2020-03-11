@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @date 2020-03-11 16:07
  */
 @Data
-class UserBaseExtraDO {
+public class UserBaseExtraDO {
 
     /**
      * 身高 cm

@@ -4,8 +4,9 @@
 
     <resultMap id="UserBaseMap" type="com.zhihui.user.domain.UserBaseDO">
         <id column="uid" property="uid"/>
-        <result column="user_role" property="userRole"/>
-        <result column="register_source" property="registerSource" typeHandler="com.zhihui.user.domain.handler.RegisterSourceHandler"/>
+        <result column="user_role" property="userRole" typeHandler="com.zhihui.user.domain.handler.UserRoleHandler"/>
+        <result column="register_source" property="registerSource"
+                typeHandler="com.zhihui.user.domain.handler.RegisterSourceHandler"/>
         <result column="user_name" property="userName"/>
         <result column="nick_name" property="nickName"/>
         <result column="gender" property="gender" typeHandler="com.zhihui.user.domain.handler.GenderHandler"/>
@@ -39,7 +40,7 @@
                                id_card,
                                base_extra)
         values (#{uid},
-                #{userRole},
+                #{userRole, typeHandler=com.zhihui.user.domain.handler.UserRoleHandler},
                 #{registerSource, typeHandler=com.zhihui.user.domain.handler.RegisterSourceHandler},
                 #{userName},
                 #{nickName},
@@ -77,5 +78,25 @@
         where uid = #{uid}
     </select>
 
+    <select id="getUserBaseByMobile" resultMap="UserBaseMap">
+        select uid,
+               user_role,
+               register_source,
+               user_name,
+               nick_name,
+               gender,
+#                birthday,
+               mobile,
+#                mobile_bind_time,
+               email,
+#                email_bind_time,
+#                create_time,
+#                update_time,
+               real_name,
+               id_card,
+               base_extra
+        from user_base
+        where mobile = #{mobile}
+    </select>
 
 </mapper>

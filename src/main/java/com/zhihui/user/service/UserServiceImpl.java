@@ -38,4 +38,10 @@ public class UserServiceImpl implements IUserService {
         DynamicDataSourceContextHolder.useZebraDataSource();
         return userDAO.getUserListByOffset(offset);
     }
+
+    @Override
+    public List<String> getMobile() {
+        DynamicDataSourceContextHolder.useZebraDataSource();
+        return userDAO.getAllMobile();
+    }
 }

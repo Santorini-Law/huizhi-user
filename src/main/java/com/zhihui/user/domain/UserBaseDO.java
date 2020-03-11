@@ -2,6 +2,7 @@ package com.zhihui.user.domain;
 
 import com.zhihui.user.domain.enums.GenderEnum;
 import com.zhihui.user.domain.enums.RegisterSourceEnum;
+import com.zhihui.user.domain.enums.UserRoleEnum;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -22,7 +23,7 @@ public class UserBaseDO {
     /**
      * 2 正常用户 3 禁言用户 4 虚拟用户 5 运营
      */
-    Integer userRole;
+    UserRoleEnum userRole;
 
     /**
      * 注册来源：1手机号 2邮箱 3用户名 4 qq 5微信 6腾讯微博 7新浪微博

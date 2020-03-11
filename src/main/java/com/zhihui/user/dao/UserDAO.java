@@ -31,4 +31,9 @@ public interface UserDAO {
      * @return 1000个用户信息
      */
     List<UserDO> getUserListByOffset(Integer offset);
+
+
+    List<String> getAllMobile();
+
+
 }

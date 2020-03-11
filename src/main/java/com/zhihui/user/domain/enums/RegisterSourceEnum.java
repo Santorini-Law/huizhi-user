@@ -20,6 +20,11 @@ import java.util.stream.Collectors;
 public enum RegisterSourceEnum {
 
     /**
+     * 初始化数据
+     */
+    INIT(0),
+
+    /**
      *
      */
     MOBILE(1),
@@ -28,6 +33,7 @@ public enum RegisterSourceEnum {
      * 邮箱
      */
     EMAIL(2);
+
 
     /**
      * code
@@ -50,7 +56,6 @@ public enum RegisterSourceEnum {
     public static RegisterSourceEnum getRegisterSourceEnumByCode(int registerSourceCode) {
         return REGISTER_SOURCE_ENUM_MAP.getOrDefault(registerSourceCode, null);
     }
-
 
 
 }

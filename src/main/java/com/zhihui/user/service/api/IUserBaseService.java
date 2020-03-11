@@ -20,4 +20,10 @@ public interface IUserBaseService {
      */
     void batchInsertUserBaseInfo(List<UserBaseDO> userBaseList);
 
+
+    void insertUserBaseInfo(UserBaseDO userBaseDO);
+
+    UserBaseDO getUserBaseInfoByMobile(String mobile);
+
+    UserBaseDO getUserBaseInfoByUid(Long uid);
 }

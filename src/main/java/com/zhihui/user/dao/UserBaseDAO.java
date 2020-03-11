@@ -30,4 +30,5 @@ public interface UserBaseDAO {
     UserBaseDO getUserBaseByUid(Long uid);
 
 
+    UserBaseDO getUserBaseByMobile(String mobile);
 }
