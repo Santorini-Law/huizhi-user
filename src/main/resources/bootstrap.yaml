@@ -5,7 +5,7 @@ spring:
     config:
       label: master
       profile: prd
-      name: database,redis
+      name: database,redis,dubbo
       uri: http://106.54.200.51:38888/
 server:
   port: 9999

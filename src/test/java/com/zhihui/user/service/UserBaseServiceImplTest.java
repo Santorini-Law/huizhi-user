@@ -62,6 +62,14 @@ class UserBaseServiceImplTest {
     }
 
     @Test
+    void testRpc() {
+        IdGenerationRequestDTO re = new IdGenerationRequestDTO();
+        re.setMobile("18342206526");
+        IdGenerationResponseDTO idGenerationResponseDTO = rpcIdGenerationService.generateUid(re);
+        log.info("{}", idGenerationResponseDTO.getId());
+    }
+
+    @Test
     void testInsertUserBaseInfo() {
         UserBaseDO userBaseDO = new UserBaseDO();
         IdGenerationRequestDTO re = new IdGenerationRequestDTO();
