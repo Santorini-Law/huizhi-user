@@ -4,8 +4,6 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.huizhi.rpc.RpcIdGenerationService;
 import com.huizhi.rpc.model.IdGenerationRequestDTO;
 import com.huizhi.rpc.model.IdGenerationResponseDTO;
-import com.zhihui.user.dao.UserBaseDAO;
-import com.zhihui.user.dao.UserDAO;
 import com.zhihui.user.domain.UserBaseDO;
 import com.zhihui.user.domain.UserBaseExtraDO;
 import com.zhihui.user.domain.UserDO;
@@ -14,9 +12,7 @@ import com.zhihui.user.domain.enums.RegisterSourceEnum;
 import com.zhihui.user.domain.enums.UserRoleEnum;
 import com.zhihui.user.service.api.IUserBaseService;
 import com.zhihui.user.service.api.IUserService;
-import jdk.nashorn.internal.runtime.options.Option;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.jni.Local;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.CollectionUtils;
@@ -28,7 +24,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @SpringBootTest
@@ -38,6 +33,12 @@ class UserBaseServiceImplTest {
     @Resource
     IUserBaseService userBaseService;
 
+    @Resource
+    IUserService userService;
+
+    @Reference
+    RpcIdGenerationService rpcIdGenerationService;
+
     @Test
     void testGetUserBaseInfoByMobile() {
         UserBaseDO userBaseInfoByMobile = userBaseService.getUserBaseInfoByMobile("18629670402");
@@ -46,7 +47,8 @@ class UserBaseServiceImplTest {
 
     @Test
     void testGetUserBaseInfoByUid() {
-        UserBaseDO userBaseInfoByMobile = userBaseService.getUserBaseInfoByUid(6296120001507040L);
+
+        UserBaseDO userBaseInfoByMobile = userBaseService.getUserBaseInfoByUid(6296130595507040L);
         log.info("uid = {}", userBaseInfoByMobile);
     }
 
@@ -54,10 +56,11 @@ class UserBaseServiceImplTest {
     void testGetUserBaseInfoByEmail() {
         List<UserBaseDO> userBaseInfoByMobile = userBaseService.getUserBaseInfoByEmail("a@a.com");
 
-        for (UserBaseDO userBaseDO: userBaseInfoByMobile){
+        for (UserBaseDO userBaseDO : userBaseInfoByMobile) {
             log.info("uid = {}", userBaseDO);
         }
     }
+
     @Test
     void testInsertUserBaseInfo() {
         UserBaseDO userBaseDO = new UserBaseDO();
@@ -115,13 +118,6 @@ class UserBaseServiceImplTest {
         userBaseService.batchInsertUserBaseInfo(userBaseDOList);
 
     }
-
-    @Resource
-    IUserService userService;
-
-    @Reference
-    RpcIdGenerationService rpcIdGenerationService;
-
 
     @Test
     void washData() {

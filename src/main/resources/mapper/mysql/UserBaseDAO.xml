@@ -10,13 +10,18 @@
         <result column="user_name" property="userName"/>
         <result column="nick_name" property="nickName"/>
         <result column="gender" property="gender" typeHandler="com.zhihui.user.domain.handler.GenderHandler"/>
-        <result column="birthday" property="birthday"/>
+        <result column="birthday" property="birthday"
+                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTypeHandler"/>
         <result column="mobile" property="mobile"/>
-        <result column="mobile_bind_time" property="mobileBindTime"/>
+        <result column="mobile_bind_time" property="mobileBindTime"
+                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTimeTypeHandler"/>
         <result column="email" property="email"/>
-        <result column="email_bind_time" property="emailBindTime"/>
-        <result column="create_time" property="createTime"/>
-        <result column="update_time" property="updateTime"/>
+        <result column="email_bind_time" property="emailBindTime"
+                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTimeTypeHandler"/>
+        <result column="create_time" property="createTime"
+                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTimeTypeHandler"/>
+        <result column="update_time" property="updateTime"
+                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTimeTypeHandler"/>
         <result column="real_name" property="realName"/>
         <result column="id_card" property="idCard"/>
         <result column="base_extra" property="baseExtra" typeHandler="com.zhihui.user.handler.BaseJsonTypeHandler"/>
@@ -85,13 +90,13 @@
                user_name,
                nick_name,
                gender,
-#                birthday,
+               birthday,
                mobile,
-#                mobile_bind_time,
+               mobile_bind_time,
                email,
-#                email_bind_time,
-#                create_time,
-#                update_time,
+               email_bind_time,
+               create_time,
+               update_time,
                real_name,
                id_card,
                base_extra
