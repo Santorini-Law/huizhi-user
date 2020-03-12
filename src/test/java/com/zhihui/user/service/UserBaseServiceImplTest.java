@@ -127,7 +127,7 @@ class UserBaseServiceImplTest {
     void washData() {
 
         // 1000个号码
-        List<UserDO> userListByOffset = userService.getUserListByOffset(0);
+        List<UserDO> userListByOffset = userService.getUserListByOffset(1000);
 
         List<String> mobileList = userService.getMobile();
 
