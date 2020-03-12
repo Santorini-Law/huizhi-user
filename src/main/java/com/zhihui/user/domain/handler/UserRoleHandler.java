@@ -1,7 +1,7 @@
 package com.zhihui.user.domain.handler;
 
 import com.zhihui.user.domain.enums.UserRoleEnum;
-import com.zhihui.user.handler.BaseEnumTypeHandler;
+import com.zhihui.utils.handler.BaseEnumTypeHandler;
 
 /**
  * @author LDZ

@@ -1,10 +1,8 @@
 package com.zhihui.user.controller.v1;
 
-import com.google.common.collect.Maps;
 import com.zhihui.user.service.api.GrayService;
 import com.zhihui.user.service.api.IUserService;
-import com.zhihui.user.vo.GrayExecuteRequestVO;
-import com.zhihui.user.vo.GrayExecuteResponseVO;
+import com.zhihui.utils.api.annotation.ApiResponseBody;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,7 +49,7 @@ public class UserController {
     @Resource
     GrayService grayService;
 
-    @ResponseBody
+    @ApiResponseBody
     @GetMapping("/hello")
     public String hello() {
 

@@ -11,20 +11,20 @@
         <result column="nick_name" property="nickName"/>
         <result column="gender" property="gender" typeHandler="com.zhihui.user.domain.handler.GenderHandler"/>
         <result column="birthday" property="birthday"
-                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTypeHandler"/>
+                typeHandler="com.zhihui.utils.handler.bean.LocalDateTypeHandler"/>
         <result column="mobile" property="mobile"/>
         <result column="mobile_bind_time" property="mobileBindTime"
-                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTimeTypeHandler"/>
+                typeHandler="com.zhihui.utils.handler.bean.LocalDateTimeTypeHandler"/>
         <result column="email" property="email"/>
         <result column="email_bind_time" property="emailBindTime"
-                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTimeTypeHandler"/>
+                typeHandler="com.zhihui.utils.handler.bean.LocalDateTimeTypeHandler"/>
         <result column="create_time" property="createTime"
-                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTimeTypeHandler"/>
+                typeHandler="com.zhihui.utils.handler.bean.LocalDateTimeTypeHandler"/>
         <result column="update_time" property="updateTime"
-                typeHandler="com.zhihui.user.handler.bean.CustomLocalDateTimeTypeHandler"/>
+                typeHandler="com.zhihui.utils.handler.bean.LocalDateTimeTypeHandler"/>
         <result column="real_name" property="realName"/>
         <result column="id_card" property="idCard"/>
-        <result column="base_extra" property="baseExtra" typeHandler="com.zhihui.user.handler.BaseJsonTypeHandler"/>
+        <result column="base_extra" property="baseExtra" typeHandler="com.zhihui.utils.handler.BaseJsonTypeHandler"/>
     </resultMap>
 
     <insert id="insert" parameterType="com.zhihui.user.domain.UserBaseDO">
@@ -59,7 +59,7 @@
                 #{updateTime},
                 #{realName},
                 #{idCard},
-                #{baseExtra, typeHandler=com.zhihui.user.handler.BaseJsonTypeHandler})
+                #{baseExtra, typeHandler=com.zhihui.utils.handler.BaseJsonTypeHandler})
     </insert>
 
     <select id="getUserBaseByUid" resultMap="UserBaseMap">

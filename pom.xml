@@ -116,6 +116,13 @@
             <artifactId>gson</artifactId>
             <version>2.8.6</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.zhihui</groupId>
+            <artifactId>common-utils</artifactId>
+            <version>1.0</version>
+        </dependency>
+
     </dependencies>
 
     <build>
