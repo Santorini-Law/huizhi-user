@@ -2,15 +2,16 @@ package com.zhihui.user.controller.v1;
 
 import com.zhihui.user.service.api.GrayService;
 import com.zhihui.user.service.api.IUserService;
+import com.zhihui.user.vo.UserLoginRequestVO;
+import com.zhihui.user.vo.UserLoginResponseVO;
 import com.zhihui.utils.api.annotation.ApiResponseBody;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.MediaType;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +23,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping(value = "/user/v1")
+@Slf4j
 public class UserController {
 
     @Value("${content}")
@@ -57,4 +59,17 @@ public class UserController {
 
         return masterUrl;
     }
+
+
+    @ApiResponseBody
+    @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")
+    @CrossOrigin
+    public UserLoginResponseVO login(@RequestBody UserLoginRequestVO userLoginRequestVO) {
+        log.info("login request = {}", userLoginRequestVO.toString());
+        UserLoginResponseVO userLoginResponseVO = new UserLoginResponseVO();
+        userLoginResponseVO.setToken(userLoginRequestVO.getCode() + userLoginRequestVO.getSource());
+        return userLoginResponseVO;
+    }
+
+
 }
