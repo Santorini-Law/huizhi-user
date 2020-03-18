@@ -9,9 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.MediaType;
+
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -54,12 +53,14 @@ public class UserController {
     @ApiResponseBody
     @GetMapping("/hello")
     public String hello() {
-
-        System.out.println(masterUrl);
-
         return masterUrl;
     }
 
+    @ApiResponseBody
+    @GetMapping("/admin/hello")
+    public String adminHello() {
+        return "admin" + masterUrl;
+    }
 
     @ApiResponseBody
     @PostMapping(value = "/login", produces = "application/json;charset=UTF-8")

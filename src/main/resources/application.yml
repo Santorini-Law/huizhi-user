@@ -1,5 +1,12 @@
 
 spring:
+  application:
+    name: huizhi-user
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+      discovery:
+        enabled: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     hikari:

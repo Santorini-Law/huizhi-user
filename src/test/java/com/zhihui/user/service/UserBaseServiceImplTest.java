@@ -75,26 +75,27 @@ class UserBaseServiceImplTest {
         IdGenerationRequestDTO re = new IdGenerationRequestDTO();
         re.setMobile("18342206526");
         IdGenerationResponseDTO idGenerationResponseDTO = rpcIdGenerationService.generateUid(re);
-        userBaseDO.setUid(idGenerationResponseDTO.getId());
-        userBaseDO.setUserRole(UserRoleEnum.INNER);
-        userBaseDO.setRegisterSource(RegisterSourceEnum.INIT);
-        userBaseDO.setUserName("mother");
-        userBaseDO.setNickName("huihui");
-        userBaseDO.setGender(GenderEnum.FEMALE);
-        userBaseDO.setBirthday(LocalDate.of(1992, 07, 03));
-        userBaseDO.setMobile("18342206526");
-        userBaseDO.setMobileBindTime(LocalDateTime.now());
-        userBaseDO.setEmail("belivar@gmail.com");
-        userBaseDO.setEmailBindTime(LocalDateTime.now());
-        userBaseDO.setCreateTime(LocalDateTime.now());
-        userBaseDO.setUpdateTime(LocalDateTime.now());
-        userBaseDO.setRealName("杨惠");
-        userBaseDO.setIdCard("220702199207030825");
-        UserBaseExtraDO userBaseExtraDO = new UserBaseExtraDO();
-        userBaseExtraDO.setStature(new BigDecimal(168));
-        userBaseExtraDO.setWeight(new BigDecimal(50.1));
-        userBaseDO.setBaseExtra(userBaseExtraDO);
-        userBaseService.insertUserBaseInfo(userBaseDO);
+        log.info(idGenerationResponseDTO.toString());
+//        userBaseDO.setUid(idGenerationResponseDTO.getId());
+//        userBaseDO.setUserRole(UserRoleEnum.INNER);
+//        userBaseDO.setRegisterSource(RegisterSourceEnum.INIT);
+//        userBaseDO.setUserName("mother");
+//        userBaseDO.setNickName("huihui");
+//        userBaseDO.setGender(GenderEnum.FEMALE);
+//        userBaseDO.setBirthday(LocalDate.of(1992, 07, 03));
+//        userBaseDO.setMobile("18342206526");
+//        userBaseDO.setMobileBindTime(LocalDateTime.now());
+//        userBaseDO.setEmail("belivar@gmail.com");
+//        userBaseDO.setEmailBindTime(LocalDateTime.now());
+//        userBaseDO.setCreateTime(LocalDateTime.now());
+//        userBaseDO.setUpdateTime(LocalDateTime.now());
+//        userBaseDO.setRealName("杨惠");
+//        userBaseDO.setIdCard("220702199207030825");
+//        UserBaseExtraDO userBaseExtraDO = new UserBaseExtraDO();
+//        userBaseExtraDO.setStature(new BigDecimal(168));
+//        userBaseExtraDO.setWeight(new BigDecimal(50.1));
+//        userBaseDO.setBaseExtra(userBaseExtraDO);
+//        userBaseService.insertUserBaseInfo(userBaseDO);
     }
 
 

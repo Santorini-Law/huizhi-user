@@ -104,6 +104,12 @@
             <groupId>com.alibaba.boot</groupId>
             <artifactId>dubbo-spring-boot-starter</artifactId>
             <version>0.2.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.curator</groupId>
+                    <artifactId>curator-framework</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -121,6 +127,18 @@
             <groupId>com.zhihui</groupId>
             <artifactId>common-utils</artifactId>
             <version>1.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zookeeper-discovery</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+            <version>2.2.1.RELEASE</version>
         </dependency>
 
     </dependencies>

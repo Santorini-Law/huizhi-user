@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2020-03-04 15:43
  */
 @RestController
-@RequestMapping(value = "interest")
+@RequestMapping(value = "/huizhi/v1")
 public class MonitorController {
 
     @ResponseBody
