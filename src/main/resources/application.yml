@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: huizhi-user
@@ -127,3 +126,13 @@ user7:
 dubbo:
   application:
     name: user-service
+
+#自定义配置
+huizhi:
+  github:
+    client-id: 你在github中注册的client id
+    client-secret: 你在github中注册的client secret
+  qq:
+    appid: 你在qq中注册的appid
+    appkey: 你在qq中注册的appkey
+
