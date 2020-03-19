@@ -3,6 +3,8 @@ package com.zhihui.user.vo;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * github 用户信息
  *
@@ -177,12 +179,12 @@ public class GithubUserInfo {
      *
      */
     @SerializedName("created_at")
-    String createTime;
+    Date createTime;
 
     /**
      *
      */
     @SerializedName("updated_at")
-    String updateTime;
+    Date updateTime;
 
 }
