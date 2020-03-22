@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhihui.user.dao.UserLoginInfoDAO">
+
+    <resultMap id="userLoginInfoMap" type="com.zhihui.user.domain.UserLoginInfoDO">
+        <id column="uid" property="uid"/>
+        <id column="login_type" property="loginType" typeHandler="com.zhihui.user.domain.handler.LoginTypeHandler"/>
+        <id column="property" property="property"/>
+        <id column="login_value" property="loginValue"/>
+        <id column="user_login_info_status" property="userLoginInfoStatus"/>
+        <id column="create_time" property="createTime"
+            typeHandler="com.zhihui.utils.handler.bean.LocalDateTimeTypeHandler"/>
+        <id column="update_time" property="updateTime"
+            typeHandler="com.zhihui.utils.handler.bean.LocalDateTimeTypeHandler"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.zhihui.user.domain.UserLoginInfoDO">
+        insert into user_login_info (uid,
+                                     login_type,
+                                     property,
+                                     login_value,
+                                     user_login_info_status,
+                                     create_time,
+                                     update_time)
+        values (#{uid},
+                #{loginType, typeHandler=com.zhihui.user.domain.handler.LoginTypeHandler},
+                #{property},
+                #{loginValue},
+                #{userLoginInfoStatus},
+                #{createTime},
+                #{updateTime})
+    </insert>
+
+
+    <select id="getUserLoginInfoByUid" resultMap="userLoginInfoMap">
+        select uid,
+               login_type,
+               property,
+               login_value,
+               userLoginInfoStatus,
+               create_time,
+               update_time
+        from user_login_info
+        where uid = #{uid}
+    </select>
+
+
+    <select id="getUserLoginInfoByProperty" resultMap="userLoginInfoMap">
+        select uid,
+               login_type,
+               property,
+               login_value,
+               user_login_info_status,
+               create_time,
+               update_time
+        from user_login_info
+        where login_type = #{loginType, typeHandler=com.zhihui.user.domain.handler.LoginTypeHandler}
+          and property = #{property}
+          and login_value = #{loginValue}
+    </select>
+
+
+</mapper>

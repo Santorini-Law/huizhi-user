@@ -2,7 +2,10 @@ package com.zhihui.user.service;
 
 import com.zhihui.user.config.dynamic.DynamicDataSourceContextHolder;
 import com.zhihui.user.dao.UserBaseDAO;
+import com.zhihui.user.dao.UserLoginInfoDAO;
 import com.zhihui.user.domain.UserBaseDO;
+import com.zhihui.user.domain.UserLoginInfoDO;
+import com.zhihui.user.domain.enums.LoginTypeEnum;
 import com.zhihui.user.service.api.IUserBaseService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,8 +14,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * @author LDZ
@@ -28,6 +29,9 @@ public class UserBaseServiceImpl implements IUserBaseService {
 
     @Resource
     UserBaseDAO userBaseDAO;
+
+    @Resource
+    UserLoginInfoDAO userLoginInfoDAO;
 
     @Override
     public void batchInsertUserBaseInfo(List<UserBaseDO> userBaseList) {
@@ -52,6 +56,18 @@ public class UserBaseServiceImpl implements IUserBaseService {
     public void insertUserBaseInfo(UserBaseDO userBaseDO) {
         DynamicDataSourceContextHolder.useShardingDataSource();
         userBaseDAO.insert(userBaseDO);
+    }
+
+    @Override
+    public void insertUserLoginInfo(UserLoginInfoDO userLoginInfoDO) {
+        DynamicDataSourceContextHolder.useShardingDataSource();
+        userLoginInfoDAO.insert(userLoginInfoDO);
+    }
+
+    @Override
+    public UserLoginInfoDO getUserLoginInfoDO(LoginTypeEnum loginType, String property, String loginValue) {
+        DynamicDataSourceContextHolder.useShardingDataSource();
+        return userLoginInfoDAO.getUserLoginInfoByProperty(loginType, property, loginValue);
     }
 
     @Override

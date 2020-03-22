@@ -7,7 +7,9 @@ import com.huizhi.rpc.model.IdGenerationResponseDTO;
 import com.zhihui.user.domain.UserBaseDO;
 import com.zhihui.user.domain.UserBaseExtraDO;
 import com.zhihui.user.domain.UserDO;
+import com.zhihui.user.domain.UserLoginInfoDO;
 import com.zhihui.user.domain.enums.GenderEnum;
+import com.zhihui.user.domain.enums.LoginTypeEnum;
 import com.zhihui.user.domain.enums.RegisterSourceEnum;
 import com.zhihui.user.domain.enums.UserRoleEnum;
 import com.zhihui.user.service.api.IUserBaseService;
@@ -121,12 +123,35 @@ class UserBaseServiceImplTest {
             userBaseDO.setUid(i);
             userBaseDO.setUserName("userName" + i);
             userBaseDO.setNickName("nickName" + i);
+            UserBaseExtraDO extraDO = new UserBaseExtraDO();
+            extraDO.setStature(new BigDecimal(180));
+            extraDO.setWeight(new BigDecimal(50));
+            userBaseDO.setBaseExtra(extraDO);
             userBaseDOList.add(userBaseDO);
         }
         System.out.println(userBaseDOList);
         userBaseService.batchInsertUserBaseInfo(userBaseDOList);
-
     }
+
+    @Test
+    public void insertUserLoginInfo() {
+
+        UserLoginInfoDO userLoginInfoDO = new UserLoginInfoDO();
+        userLoginInfoDO.setUid(64L);
+        userLoginInfoDO.setLoginType(LoginTypeEnum.GITHUB);
+        userLoginInfoDO.setProperty("login");
+        userLoginInfoDO.setLoginValue("name");
+        userLoginInfoDO.setCreateTime(LocalDateTime.now());
+        userBaseService.insertUserLoginInfo(userLoginInfoDO);
+    }
+
+    @Test
+    public void TestGetUserLoginInfoByProperty() {
+
+        UserLoginInfoDO userLoginInfoDO = userBaseService.getUserLoginInfoDO(LoginTypeEnum.GITHUB, "login", "name");
+        log.info("user login info = {}", userLoginInfoDO);
+    }
+
 
     @Test
     void washData() {

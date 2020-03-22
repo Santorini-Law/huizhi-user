@@ -1,6 +1,8 @@
 package com.zhihui.user.service.api;
 
 import com.zhihui.user.domain.UserBaseDO;
+import com.zhihui.user.domain.UserLoginInfoDO;
+import com.zhihui.user.domain.enums.LoginTypeEnum;
 
 import java.util.List;
 
@@ -22,6 +24,10 @@ public interface IUserBaseService {
 
 
     void insertUserBaseInfo(UserBaseDO userBaseDO);
+
+    void insertUserLoginInfo(UserLoginInfoDO userLoginInfoDO);
+
+    UserLoginInfoDO getUserLoginInfoDO(LoginTypeEnum loginType, String property, String loginValue);
 
     UserBaseDO getUserBaseInfoByMobile(String mobile);
 

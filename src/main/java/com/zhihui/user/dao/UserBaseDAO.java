@@ -1,6 +1,7 @@
 package com.zhihui.user.dao;
 
 import com.zhihui.user.domain.UserBaseDO;
+import com.zhihui.user.domain.UserLoginInfoDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

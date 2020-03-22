@@ -21,6 +21,7 @@ import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -61,8 +62,9 @@ public class DataSourceConfigurer {
     private DataSource getShardingDataSource() {
         ShardingRuleConfiguration shardingRuleConfig;
         shardingRuleConfig = new ShardingRuleConfiguration();
-        shardingRuleConfig.getTableRuleConfigs().add(getUserTableRuleConfiguration());
-        shardingRuleConfig.getBindingTableGroups().add("user_base");
+
+        shardingRuleConfig.getTableRuleConfigs().addAll(Arrays.asList(getUserBaseTableRuleConfiguration(), getUserLoginInfoTableRuleConfiguration()));
+        shardingRuleConfig.getBindingTableGroups().addAll(Arrays.asList("user_base", "user_login_info"));
         shardingRuleConfig.setDefaultDatabaseShardingStrategyConfig(new StandardShardingStrategyConfiguration("uid", DatabaseShardingAlgorithm.class.getName()));
         shardingRuleConfig.setDefaultTableShardingStrategyConfig(new StandardShardingStrategyConfiguration("uid", TableShardingAlgorithm.class.getName()));
         // 分库设置
@@ -84,13 +86,23 @@ public class DataSourceConfigurer {
     }
 
     @Bean
-    TableRuleConfiguration getUserTableRuleConfiguration() {
+    TableRuleConfiguration getUserBaseTableRuleConfiguration() {
         TableRuleConfiguration orderTableRuleConfig = new TableRuleConfiguration();
         orderTableRuleConfig.setLogicTable("user_base");
         orderTableRuleConfig.setActualDataNodes("user_${0..7}.user_base_${0..7}");
         orderTableRuleConfig.setKeyGeneratorColumnName("uid");
         return orderTableRuleConfig;
     }
+
+    @Bean
+    TableRuleConfiguration getUserLoginInfoTableRuleConfiguration() {
+        TableRuleConfiguration orderTableRuleConfig = new TableRuleConfiguration();
+        orderTableRuleConfig.setLogicTable("user_login_info");
+        orderTableRuleConfig.setActualDataNodes("user_${0..7}.user_login_info_${0..7}");
+        orderTableRuleConfig.setKeyGeneratorColumnName("uid");
+        return orderTableRuleConfig;
+    }
+
 
     @Bean("sharding")
     public DataSource getDataSource() {
